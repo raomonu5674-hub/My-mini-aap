@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Mini App</title>
+  <!-- Telegram SDK -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px;
+      background: var(--tg-theme-bg-color, #f4f6f8);
+      color: var(--tg-theme-text-color, #222);
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      background: #2481cc;
+      color: white;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2 id="greeting">नमस्ते!</h2>
+    <p>यह आपका पहला मोबाइल से बना Telegram Mini App है।</p>
+    <button onclick="showAlert()">यहाँ क्लिक करें</button>
+  </div>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.expand(); // फुल स्क्रीन
+
+    // Telegram यूज़र का नाम दिखाएं
+    if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+      document.getElementById('greeting').innerText = 
+        `नमस्ते, ${tg.initDataUnsafe.user.first_name}!`;
+    }
+
+    function showAlert() {
+      tg.showAlert("बधाई हो! आपका Mini App काम कर रहा है।");
+    }
+  </script>
+</body>
+</html>
